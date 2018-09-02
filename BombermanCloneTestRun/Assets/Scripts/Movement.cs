@@ -1,11 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
+using System.Timers;
+using System;
 
 public class Movement : MonoBehaviour {
     float lastStep, timeBetweenSteps = 0.05f;
     public float movementSpeed = 0.25f;
-    public Sprite moveUp, moveLeft, moveDown, moveRight;
+    public Sprite moveUp, moveUp2, moveUpIdle, moveLeft, moveLeft2, moveLeftIdle, moveDown, moveDown2, moveDownIdle, moveRight, moveRight2, moveRightIdle;
     // Use this for initialization
     void Start () {
 
@@ -28,7 +29,8 @@ public class Movement : MonoBehaviour {
                     this.GetComponent<SpriteRenderer>().sprite = moveUp;
 
                 }
-            }
+             }
+
         }
 
         if (Input.GetKey("a"))
@@ -41,6 +43,9 @@ public class Movement : MonoBehaviour {
                     pos.x -= movementSpeed;
                     transform.position = pos;
                     this.GetComponent<SpriteRenderer>().sprite = moveLeft;
+                    if(Input.GetKeyDown("a")){
+
+                    }
 
                 }
             }
@@ -75,5 +80,6 @@ public class Movement : MonoBehaviour {
                 }
             }
         }
+
     }
 }

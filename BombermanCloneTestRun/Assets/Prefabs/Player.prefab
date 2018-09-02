@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4755873374747908}
   - component: {fileID: 212522034318127094}
   - component: {fileID: 114580729576639824}
+  - component: {fileID: 108104788523795020}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -41,6 +42,43 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!108 &108104788523795020
+Light:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1056620759114620}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 2
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Intensity: 100
+  m_Range: 1000
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 1
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 50
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!114 &114580729576639824
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -53,6 +91,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 0.25
+  moveUp: {fileID: 0}
+  moveUp2: {fileID: 0}
+  moveUpIdle: {fileID: 0}
+  moveLeft: {fileID: 0}
+  moveLeft2: {fileID: 0}
+  moveLeftIdle: {fileID: 0}
+  moveDown: {fileID: 0}
+  moveDown2: {fileID: 0}
+  moveDownIdle: {fileID: 0}
+  moveRight: {fileID: 0}
+  moveRight2: {fileID: 0}
+  moveRightIdle: {fileID: 0}
 --- !u!212 &212522034318127094
 SpriteRenderer:
   m_ObjectHideFlags: 1
