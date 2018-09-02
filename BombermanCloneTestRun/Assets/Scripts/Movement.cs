@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour {
-
     float lastStep, timeBetweenSteps = 0.05f;
     public float movementSpeed = 0.25f;
-
+    public Sprite moveUp, moveLeft, moveDown, moveRight;
     // Use this for initialization
     void Start () {
-        
+
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
         
         var pos = transform.position;
 
@@ -26,6 +25,8 @@ public class Movement : MonoBehaviour {
                     lastStep = Time.time;
                     pos.y += movementSpeed;
                     transform.position = pos;
+                    this.GetComponent<SpriteRenderer>().sprite = moveUp;
+
                 }
             }
         }
@@ -39,6 +40,8 @@ public class Movement : MonoBehaviour {
                     lastStep = Time.time;
                     pos.x -= movementSpeed;
                     transform.position = pos;
+                    this.GetComponent<SpriteRenderer>().sprite = moveLeft;
+
                 }
             }
         }
@@ -52,6 +55,8 @@ public class Movement : MonoBehaviour {
                     lastStep = Time.time;
                     pos.y -= movementSpeed;
                     transform.position = pos;
+                    this.GetComponent<SpriteRenderer>().sprite = moveDown;
+
                 }
             }
         }
@@ -65,6 +70,8 @@ public class Movement : MonoBehaviour {
                     lastStep = Time.time;
                     pos.x += movementSpeed;
                     transform.position = pos;
+                    this.GetComponent<SpriteRenderer>().sprite = moveRight;
+
                 }
             }
         }
