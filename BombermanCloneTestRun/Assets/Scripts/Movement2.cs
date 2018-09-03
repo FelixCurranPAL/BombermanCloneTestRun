@@ -30,7 +30,13 @@ public class Movement2 : MonoBehaviour
 
 
             }
+           
 
+        }
+
+        if (Input.GetKeyUp("w"))
+        {
+            this.GetComponent<SpriteRenderer>().sprite = moveUpIdle;
         }
 
         if (Input.GetKey("a"))
@@ -42,13 +48,14 @@ public class Movement2 : MonoBehaviour
                 pos.x -= movementSpeed;
                 transform.position = pos;
                 this.GetComponent<SpriteRenderer>().sprite = moveLeft;
-                /*if (Input.GetKeyDown("a"))
-                {
-
-                }*/
-
 
             }
+
+        }
+
+        if (Input.GetKeyUp("a"))
+        {
+            this.GetComponent<SpriteRenderer>().sprite = moveLeftIdle;
         }
 
         if (Input.GetKey("s"))
@@ -65,7 +72,13 @@ public class Movement2 : MonoBehaviour
 
             }
         }
-            if (Input.GetKey("d"))
+
+        if (Input.GetKeyUp("s"))
+        {
+            this.GetComponent<SpriteRenderer>().sprite = moveDownIdle;
+        }
+
+        if (Input.GetKey("d"))
             {
                 {
                     if (Time.time - lastStep > timeBetweenSteps)
@@ -79,6 +92,11 @@ public class Movement2 : MonoBehaviour
 
 
             }
+        }
+
+        if (Input.GetKeyUp("d"))
+        {
+            this.GetComponent<SpriteRenderer>().sprite = moveRightIdle;
         }
 
     }
