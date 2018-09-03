@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4755873374747908}
   - component: {fileID: 212522034318127094}
   - component: {fileID: 114580729576639824}
-  - component: {fileID: 108104788523795020}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -42,43 +41,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!108 &108104788523795020
-Light:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1056620759114620}
-  m_Enabled: 1
-  serializedVersion: 8
-  m_Type: 2
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 100
-  m_Range: 1000
-  m_SpotAngle: 30
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 1
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 50
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
 --- !u!114 &114580729576639824
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -91,18 +53,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 0.25
-  moveUp: {fileID: 0}
-  moveUp2: {fileID: 0}
-  moveUpIdle: {fileID: 0}
-  moveLeft: {fileID: 0}
-  moveLeft2: {fileID: 0}
-  moveLeftIdle: {fileID: 0}
-  moveDown: {fileID: 0}
-  moveDown2: {fileID: 0}
-  moveDownIdle: {fileID: 0}
-  moveRight: {fileID: 0}
-  moveRight2: {fileID: 0}
-  moveRightIdle: {fileID: 0}
+  DownIdle: {fileID: 21300000, guid: efe40de77a64a8547b0bd51dfdd28501, type: 3}
+  LeftIdle: {fileID: 21300000, guid: c6ce6054bf61462429c0a95b4f5ec3be, type: 3}
+  RightIdle: {fileID: 21300000, guid: 71c47cc95888bee4b952ad307c42d29b, type: 3}
+  UpIdle: {fileID: 21300000, guid: b1d922cc92ac13347bbe195df347e859, type: 3}
+  DownMove1: {fileID: 21300000, guid: ca32d0bbf845bb84886bd32077ed6b39, type: 3}
+  LeftMove1: {fileID: 21300000, guid: 27a0e8541bd395448a7a92323273bdf9, type: 3}
+  RightMove1: {fileID: 21300000, guid: fed7b9da90b728048af482270d4f3172, type: 3}
+  UpMove1: {fileID: 21300000, guid: dfbf40a86d108cc4d9a63b660f4462e7, type: 3}
+  DownMove2: {fileID: 21300000, guid: 7bde5bb11f1f4dd49a82ac4a7c14fb6d, type: 3}
+  LeftMove2: {fileID: 21300000, guid: a3b1f75b12b55044eb3bd283089a61cc, type: 3}
+  RightMove2: {fileID: 21300000, guid: c23f62f99dda13548bee41193affb578, type: 3}
+  UpMove2: {fileID: 21300000, guid: d18e274c391cf704ea4fcdbd96f31e56, type: 3}
 --- !u!212 &212522034318127094
 SpriteRenderer:
   m_ObjectHideFlags: 1

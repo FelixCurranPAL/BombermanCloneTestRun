@@ -5,8 +5,15 @@ using System;
 
 public class Movement : MonoBehaviour {
     float lastStep, timeBetweenSteps = 0.05f;
+
+    float lastFrame, timeBetweenFrames = 0.25f;
+    int animationStep = 0;
+
+    Vector3 destPosition;
+
     public float movementSpeed = 0.25f;
-    public Sprite moveUp, moveUp2, moveUpIdle, moveLeft, moveLeft2, moveLeftIdle, moveDown, moveDown2, moveDownIdle, moveRight, moveRight2, moveRightIdle;
+    public Sprite DownIdle, LeftIdle, RightIdle, UpIdle, DownMove1, LeftMove1, RightMove1, UpMove1, DownMove2, LeftMove2, RightMove2, UpMove2;
+
     // Use this for initialization
     void Start () {
 
@@ -14,22 +21,38 @@ public class Movement : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        
         var pos = transform.position;
 
         if (Input.GetKey("w"))
         {
-            if (pos.y <= 3.75)
+            if (pos.y <= 3.75) // TO DO: NEED TO REPLACE WITH MORE GENERIC MOVEMENT LIMITER
             {
                 if (Time.time - lastStep > timeBetweenSteps)
                 {
                     lastStep = Time.time;
-                    pos.y += movementSpeed;
-                    transform.position = pos;
-                    this.GetComponent<SpriteRenderer>().sprite = moveUp;
-
+                    pos.y += movementSpeed; 
+                    transform.position = pos; // TO DO: NEED TO REPLACE WITH GRADUAL MOVEMENT SYSTEM
                 }
-             }
+            }
+
+            if (animationStep < 1)
+            {
+                if (Time.time - lastFrame > timeBetweenFrames)
+                {
+                    this.GetComponent<SpriteRenderer>().sprite = UpMove1;
+                    animationStep = animationStep + 1;
+                    lastFrame = Time.time;
+                }
+            }
+            else if (animationStep == 1)
+            {
+                if (Time.time - lastFrame > timeBetweenFrames)
+                {
+                    this.GetComponent<SpriteRenderer>().sprite = UpMove2;
+                    animationStep = 0;
+                    lastFrame = Time.time;
+                }
+            }
 
         }
 
@@ -42,11 +65,25 @@ public class Movement : MonoBehaviour {
                     lastStep = Time.time;
                     pos.x -= movementSpeed;
                     transform.position = pos;
-                    this.GetComponent<SpriteRenderer>().sprite = moveLeft;
-                    if(Input.GetKeyDown("a")){
+                }
+            }
 
-                    }
-
+            if (animationStep < 1)
+            {
+                if (Time.time - lastFrame > timeBetweenFrames)
+                {
+                    this.GetComponent<SpriteRenderer>().sprite = LeftMove1;
+                    animationStep = animationStep + 1;
+                    lastFrame = Time.time;
+                }
+            }
+            else if (animationStep == 1)
+            {
+                if (Time.time - lastFrame > timeBetweenFrames)
+                {
+                    this.GetComponent<SpriteRenderer>().sprite = LeftMove2;
+                    animationStep = 0;
+                    lastFrame = Time.time;
                 }
             }
         }
@@ -60,8 +97,25 @@ public class Movement : MonoBehaviour {
                     lastStep = Time.time;
                     pos.y -= movementSpeed;
                     transform.position = pos;
-                    this.GetComponent<SpriteRenderer>().sprite = moveDown;
+                }
+            }
 
+            if (animationStep < 1)
+            {
+                if (Time.time - lastFrame > timeBetweenFrames)
+                {
+                    this.GetComponent<SpriteRenderer>().sprite = DownMove1;
+                    animationStep = animationStep + 1;
+                    lastFrame = Time.time;
+                }
+            }
+            else if (animationStep == 1)
+            {
+                if (Time.time - lastFrame > timeBetweenFrames)
+                {
+                    this.GetComponent<SpriteRenderer>().sprite = DownMove2;
+                    animationStep = 0;
+                    lastFrame = Time.time;
                 }
             }
         }
@@ -75,8 +129,25 @@ public class Movement : MonoBehaviour {
                     lastStep = Time.time;
                     pos.x += movementSpeed;
                     transform.position = pos;
-                    this.GetComponent<SpriteRenderer>().sprite = moveRight;
+                }
+            }
 
+            if (animationStep < 1)
+            {
+                if (Time.time - lastFrame > timeBetweenFrames)
+                {
+                    this.GetComponent<SpriteRenderer>().sprite = RightMove1;
+                    animationStep = animationStep + 1;
+                    lastFrame = Time.time;
+                }
+            }
+            else if (animationStep == 1)
+            {
+                if (Time.time - lastFrame > timeBetweenFrames)
+                {
+                    this.GetComponent<SpriteRenderer>().sprite = RightMove2;
+                    animationStep = 0;
+                    lastFrame = Time.time;
                 }
             }
         }
