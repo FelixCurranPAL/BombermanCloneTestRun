@@ -23,16 +23,14 @@ public class Movement : MonoBehaviour {
     void Update () {
         var pos = transform.position;
 
+
         if (Input.GetKey("w"))
         {
-            if (pos.y <= 3.75) // TO DO: NEED TO REPLACE WITH MORE GENERIC MOVEMENT LIMITER
+            if (Time.time - lastStep > timeBetweenSteps)
             {
-                if (Time.time - lastStep > timeBetweenSteps)
-                {
-                    lastStep = Time.time;
-                    pos.y += movementSpeed; 
-                    transform.position = pos; // TO DO: NEED TO REPLACE WITH GRADUAL MOVEMENT SYSTEM
-                }
+                lastStep = Time.time;
+                pos.y += movementSpeed;
+                transform.position = pos; // TO DO: NEED TO REPLACE WITH GRADUAL MOVEMENT SYSTEM
             }
 
             if (animationStep < 1)
@@ -53,19 +51,19 @@ public class Movement : MonoBehaviour {
                     lastFrame = Time.time;
                 }
             }
-
         }
+
+        if (Input.GetKeyUp("w"))
+            this.GetComponent<SpriteRenderer>().sprite = UpIdle;
+
 
         if (Input.GetKey("a"))
         {
-            if (pos.x >= -3.75)
+            if (Time.time - lastStep > timeBetweenSteps)
             {
-                if (Time.time - lastStep > timeBetweenSteps)
-                {
-                    lastStep = Time.time;
-                    pos.x -= movementSpeed;
-                    transform.position = pos;
-                }
+                lastStep = Time.time;
+                pos.x -= movementSpeed;
+                transform.position = pos;
             }
 
             if (animationStep < 1)
@@ -88,16 +86,17 @@ public class Movement : MonoBehaviour {
             }
         }
 
+        if (Input.GetKeyUp("a"))
+            this.GetComponent<SpriteRenderer>().sprite = LeftIdle;
+
+
         if (Input.GetKey("s"))
         {
-            if (pos.y >= -2.75)
+            if (Time.time - lastStep > timeBetweenSteps)
             {
-                if (Time.time - lastStep > timeBetweenSteps)
-                {
-                    lastStep = Time.time;
-                    pos.y -= movementSpeed;
-                    transform.position = pos;
-                }
+                lastStep = Time.time;
+                pos.y -= movementSpeed;
+                transform.position = pos;
             }
 
             if (animationStep < 1)
@@ -120,16 +119,17 @@ public class Movement : MonoBehaviour {
             }
         }
 
+        if (Input.GetKeyUp("s"))
+            this.GetComponent<SpriteRenderer>().sprite = DownIdle;
+
+
         if (Input.GetKey("d"))
         {
-            if (pos.x <= 3.75)
+            if (Time.time - lastStep > timeBetweenSteps)
             {
-                if (Time.time - lastStep > timeBetweenSteps)
-                {
-                    lastStep = Time.time;
-                    pos.x += movementSpeed;
-                    transform.position = pos;
-                }
+                lastStep = Time.time;
+                pos.x += movementSpeed;
+                transform.position = pos;
             }
 
             if (animationStep < 1)
@@ -151,6 +151,9 @@ public class Movement : MonoBehaviour {
                 }
             }
         }
+
+        if (Input.GetKeyUp("d"))
+            this.GetComponent<SpriteRenderer>().sprite = RightIdle;
 
     }
 }

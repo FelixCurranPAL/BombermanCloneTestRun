@@ -3,7 +3,19 @@ guid: b9aee983a4420cf47b1c538e2b0144dc
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - DownIdle: {fileID: 21300000, guid: efe40de77a64a8547b0bd51dfdd28501, type: 3}
+  - LeftIdle: {instanceID: 0}
+  - RightIdle: {instanceID: 0}
+  - UpIdle: {instanceID: 0}
+  - DownMove1: {instanceID: 0}
+  - LeftMove1: {instanceID: 0}
+  - RightMove1: {instanceID: 0}
+  - UpMove1: {instanceID: 0}
+  - DownMove2: {instanceID: 0}
+  - LeftMove2: {instanceID: 0}
+  - RightMove2: {instanceID: 0}
+  - UpMove2: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
