@@ -10,23 +10,28 @@ public class Movement : MonoBehaviour
     float lastFrame, timeBetweenFrames = 0.25f;
     int animationStep = 0;
 
-    Vector3 destPosition;
-
     public float movementSpeed = 0.25f;
-    public Sprite bomb;
+    public GameObject bombPrefab;
     public Sprite DownIdle, LeftIdle, RightIdle, UpIdle, DownMove1, LeftMove1, RightMove1, UpMove1, DownMove2, LeftMove2, RightMove2, UpMove2;
-    public int Bomb_Strength;
-    public int BombDuration;
+    public int bombStrength;
+    public int bombDuration;
     Transform GetTransform;
 
 
     // Use this for initialization
     void Start()
     {
+
     }
 
     // Update is called once per frame
     void Update()
+    {
+        movement();
+        placeBombs();
+    }
+
+    void movement()
     {
         var pos = transform.position;
 
@@ -63,112 +68,108 @@ public class Movement : MonoBehaviour
             }
         }
 
-            if (Input.GetKey("a"))
+        if (Input.GetKey("a"))
+        {
+
+            if (Time.time - lastStep > timeBetweenSteps)
             {
-
-                if (Time.time - lastStep > timeBetweenSteps)
-                {
-                    lastStep = Time.time;
-                    pos.x -= movementSpeed;
-                    transform.position = pos;
-                }
-
-
-                if (animationStep < 1)
-                {
-                    if (Time.time - lastFrame > timeBetweenFrames)
-                    {
-                        this.GetComponent<SpriteRenderer>().sprite = LeftMove1;
-                        animationStep = animationStep + 1;
-                        lastFrame = Time.time;
-                    }
-                }
-                else if (animationStep == 1)
-                {
-                    if (Time.time - lastFrame > timeBetweenFrames)
-                    {
-                        this.GetComponent<SpriteRenderer>().sprite = LeftMove2;
-                        animationStep = 0;
-                        lastFrame = Time.time;
-                    }
-                }
+                lastStep = Time.time;
+                pos.x -= movementSpeed;
+                transform.position = pos;
             }
 
-            if (Input.GetKey("s"))
+
+            if (animationStep < 1)
             {
-
-                if (Time.time - lastStep > timeBetweenSteps)
+                if (Time.time - lastFrame > timeBetweenFrames)
                 {
-                    lastStep = Time.time;
-                    pos.y -= movementSpeed;
-                    transform.position = pos;
-                }
-
-
-                if (animationStep < 1)
-                {
-                    if (Time.time - lastFrame > timeBetweenFrames)
-                    {
-                        this.GetComponent<SpriteRenderer>().sprite = DownMove1;
-                        animationStep = animationStep + 1;
-                        lastFrame = Time.time;
-                    }
-                }
-                else if (animationStep == 1)
-                {
-                    if (Time.time - lastFrame > timeBetweenFrames)
-                    {
-                        this.GetComponent<SpriteRenderer>().sprite = DownMove2;
-                        animationStep = 0;
-                        lastFrame = Time.time;
-                    }
+                    this.GetComponent<SpriteRenderer>().sprite = LeftMove1;
+                    animationStep = animationStep + 1;
+                    lastFrame = Time.time;
                 }
             }
-
-            if (Input.GetKey("d"))
+            else if (animationStep == 1)
             {
-
-                if (Time.time - lastStep > timeBetweenSteps)
+                if (Time.time - lastFrame > timeBetweenFrames)
                 {
-                    lastStep = Time.time;
-                    pos.x += movementSpeed;
-                    transform.position = pos;
-                }
-
-
-                if (animationStep < 1)
-                {
-                    if (Time.time - lastFrame > timeBetweenFrames)
-                    {
-                        this.GetComponent<SpriteRenderer>().sprite = RightMove1;
-                        animationStep = animationStep + 1;
-                        lastFrame = Time.time;
-                    }
-                }
-                else if (animationStep == 1)
-                {
-                    if (Time.time - lastFrame > timeBetweenFrames)
-                    {
-                        this.GetComponent<SpriteRenderer>().sprite = RightMove2;
-                        animationStep = 0;
-                        lastFrame = Time.time;
-                    }
+                    this.GetComponent<SpriteRenderer>().sprite = LeftMove2;
+                    animationStep = 0;
+                    lastFrame = Time.time;
                 }
             }
+        }
+
+        if (Input.GetKey("s"))
+        {
+
+            if (Time.time - lastStep > timeBetweenSteps)
+            {
+                lastStep = Time.time;
+                pos.y -= movementSpeed;
+                transform.position = pos;
+            }
+
+
+            if (animationStep < 1)
+            {
+                if (Time.time - lastFrame > timeBetweenFrames)
+                {
+                    this.GetComponent<SpriteRenderer>().sprite = DownMove1;
+                    animationStep = animationStep + 1;
+                    lastFrame = Time.time;
+                }
+            }
+            else if (animationStep == 1)
+            {
+                if (Time.time - lastFrame > timeBetweenFrames)
+                {
+                    this.GetComponent<SpriteRenderer>().sprite = DownMove2;
+                    animationStep = 0;
+                    lastFrame = Time.time;
+                }
+            }
+        }
+
+        if (Input.GetKey("d"))
+        {
+
+            if (Time.time - lastStep > timeBetweenSteps)
+            {
+                lastStep = Time.time;
+                pos.x += movementSpeed;
+                transform.position = pos;
+            }
+
+
+            if (animationStep < 1)
+            {
+                if (Time.time - lastFrame > timeBetweenFrames)
+                {
+                    this.GetComponent<SpriteRenderer>().sprite = RightMove1;
+                    animationStep = animationStep + 1;
+                    lastFrame = Time.time;
+                }
+            }
+            else if (animationStep == 1)
+            {
+                if (Time.time - lastFrame > timeBetweenFrames)
+                {
+                    this.GetComponent<SpriteRenderer>().sprite = RightMove2;
+                    animationStep = 0;
+                    lastFrame = Time.time;
+                }
+            }
+        }
+    }
+
+    void placeBombs()
+    {
+        var pos = transform.position;
 
         if (Input.GetKeyDown("space"))
         {
-            // create the objec
-            GameObject fruit = new GameObject();
-            // add a "SpriteRenderer" component to the newly created object
-            fruit.AddComponent<SpriteRenderer>().sprite = bomb;
-            fruit.transform.position = pos;
-            //add time delay here to stop bounciness and some form of handler for when user stays on bomb
-            fruit.AddComponent<CapsuleCollider2D>();
-            Destroy(fruit, 2);
-
+            Instantiate(bombPrefab, new Vector3(pos.x,pos.y,pos.z), Quaternion.identity);
         }
-
     }
 
 
