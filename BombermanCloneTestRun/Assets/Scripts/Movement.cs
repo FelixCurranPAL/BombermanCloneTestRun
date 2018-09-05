@@ -159,17 +159,22 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyDown("space"))
         {
             // create the objec
-            GameObject fruit = new GameObject();
+            GameObject Bombs = new GameObject();
             // add a "SpriteRenderer" component to the newly created object
-            fruit.AddComponent<SpriteRenderer>().sprite = bomb;
-            fruit.transform.position = pos;
+            Bombs.AddComponent<SpriteRenderer>().sprite = bomb;
+            Bombs.transform.position = pos;
             //add time delay here to stop bounciness and some form of handler for when user stays on bomb
-            fruit.AddComponent<CapsuleCollider2D>();
-            Destroy(fruit, 2);
+            Bombs.AddComponent<CapsuleCollider2D>();
+            Bombs.AddComponent<Rigidbody2D>();
+            Destroy(Bombs, 2);
 
         }
 
     }
-
+        void OnCollisionExit(Collision Bombs)
+        {
+        print("No longer in contact with " + Bombs);
+        }
+    }
 
 }
