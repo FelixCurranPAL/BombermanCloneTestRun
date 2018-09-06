@@ -99,22 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9aee983a4420cf47b1c538e2b0144dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 0.25
   bombPrefab: {fileID: 1222088953339274, guid: 14772d624cc17b949be8cc0f47b5fca2, type: 2}
-  DownIdle: {fileID: 21300000, guid: efe40de77a64a8547b0bd51dfdd28501, type: 3}
-  LeftIdle: {fileID: 21300000, guid: c6ce6054bf61462429c0a95b4f5ec3be, type: 3}
-  RightIdle: {fileID: 21300000, guid: 71c47cc95888bee4b952ad307c42d29b, type: 3}
-  UpIdle: {fileID: 21300000, guid: b1d922cc92ac13347bbe195df347e859, type: 3}
-  DownMove1: {fileID: 21300000, guid: ca32d0bbf845bb84886bd32077ed6b39, type: 3}
-  LeftMove1: {fileID: 21300000, guid: 27a0e8541bd395448a7a92323273bdf9, type: 3}
-  RightMove1: {fileID: 21300000, guid: fed7b9da90b728048af482270d4f3172, type: 3}
-  UpMove1: {fileID: 21300000, guid: dfbf40a86d108cc4d9a63b660f4462e7, type: 3}
-  DownMove2: {fileID: 21300000, guid: 7bde5bb11f1f4dd49a82ac4a7c14fb6d, type: 3}
-  LeftMove2: {fileID: 21300000, guid: a3b1f75b12b55044eb3bd283089a61cc, type: 3}
-  RightMove2: {fileID: 21300000, guid: c23f62f99dda13548bee41193affb578, type: 3}
-  UpMove2: {fileID: 21300000, guid: d18e274c391cf704ea4fcdbd96f31e56, type: 3}
-  bombStrength: 0
-  bombDuration: 2
+  movementDistance: 0.025
 --- !u!212 &212522034318127094
 SpriteRenderer:
   m_ObjectHideFlags: 1

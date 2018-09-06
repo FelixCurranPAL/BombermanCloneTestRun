@@ -5,23 +5,20 @@ using System;
 
 public class Movement : MonoBehaviour
 {
-    float lastStep, timeBetweenSteps = 0.05f;
-
-    float lastFrame, timeBetweenFrames = 0.25f;
-    int animationStep = 0;
-
-    public float movementSpeed = 0.25f;
     public GameObject bombPrefab;
-    public Sprite DownIdle, LeftIdle, RightIdle, UpIdle, DownMove1, LeftMove1, RightMove1, UpMove1, DownMove2, LeftMove2, RightMove2, UpMove2;
-    public int bombStrength;
-    public int bombDuration;
-    Transform GetTransform;
 
+    private Vector3 startPosition; // keep track of your initial position as well as your desired position
+    private Vector3 desiredPos; // keep track of your desired position after pressing a movement button
+
+    public float movementDistance;
+
+    float lerpTime = 1f;
+    float currentLerpTime;
 
     // Use this for initialization
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -33,134 +30,39 @@ public class Movement : MonoBehaviour
 
     void movement()
     {
-        var pos = transform.position;
+        startPosition = transform.position; // Keep track of the object's original position
 
         if (Input.GetKey("w"))
         {
-
-            if (Time.time - lastStep > timeBetweenSteps)
-            {
-                lastStep = Time.time;
-                pos.y += movementSpeed;
-                transform.position = pos; // TO DO: NEED TO REPLACE WITH GRADUAL MOVEMENT SYSTEM
-            }
-
-
-            if (animationStep < 1)
-            {
-                if (Time.time - lastFrame > timeBetweenFrames)
-                {
-                    this.GetComponent<SpriteRenderer>().sprite = UpMove1;
-                    animationStep = animationStep + 1;
-                    lastFrame = Time.time;
-                }
-            }
-            else if (animationStep == 1)
-            {
-                if (Time.time - lastFrame > timeBetweenFrames)
-                {
-                    this.GetComponent<SpriteRenderer>().sprite = UpMove2;
-                    animationStep = 0;
-                    lastFrame = Time.time;
-                }
-
-
-            }
+            desiredPos = new Vector3(startPosition.x, startPosition.y += movementDistance, startPosition.z); // move up
         }
 
         if (Input.GetKey("a"))
         {
-
-            if (Time.time - lastStep > timeBetweenSteps)
-            {
-                lastStep = Time.time;
-                pos.x -= movementSpeed;
-                transform.position = pos;
-            }
-
-
-            if (animationStep < 1)
-            {
-                if (Time.time - lastFrame > timeBetweenFrames)
-                {
-                    this.GetComponent<SpriteRenderer>().sprite = LeftMove1;
-                    animationStep = animationStep + 1;
-                    lastFrame = Time.time;
-                }
-            }
-            else if (animationStep == 1)
-            {
-                if (Time.time - lastFrame > timeBetweenFrames)
-                {
-                    this.GetComponent<SpriteRenderer>().sprite = LeftMove2;
-                    animationStep = 0;
-                    lastFrame = Time.time;
-                }
-            }
+            desiredPos = new Vector3(startPosition.x -= movementDistance, startPosition.y, startPosition.z); // move left
         }
 
         if (Input.GetKey("s"))
         {
-
-            if (Time.time - lastStep > timeBetweenSteps)
-            {
-                lastStep = Time.time;
-                pos.y -= movementSpeed;
-                transform.position = pos;
-            }
-
-
-            if (animationStep < 1)
-            {
-                if (Time.time - lastFrame > timeBetweenFrames)
-                {
-                    this.GetComponent<SpriteRenderer>().sprite = DownMove1;
-                    animationStep = animationStep + 1;
-                    lastFrame = Time.time;
-                }
-            }
-            else if (animationStep == 1)
-            {
-                if (Time.time - lastFrame > timeBetweenFrames)
-                {
-                    this.GetComponent<SpriteRenderer>().sprite = DownMove2;
-                    animationStep = 0;
-                    lastFrame = Time.time;
-                }
-            }
+            desiredPos = new Vector3(startPosition.x, startPosition.y -= movementDistance, startPosition.z); // move down
         }
 
         if (Input.GetKey("d"))
         {
-
-            if (Time.time - lastStep > timeBetweenSteps)
-            {
-                lastStep = Time.time;
-                pos.x += movementSpeed;
-                transform.position = pos;
-            }
-
-
-            if (animationStep < 1)
-            {
-                if (Time.time - lastFrame > timeBetweenFrames)
-                {
-                    this.GetComponent<SpriteRenderer>().sprite = RightMove1;
-                    animationStep = animationStep + 1;
-                    lastFrame = Time.time;
-                }
-            }
-            else if (animationStep == 1)
-            {
-                if (Time.time - lastFrame > timeBetweenFrames)
-                {
-                    this.GetComponent<SpriteRenderer>().sprite = RightMove2;
-                    animationStep = 0;
-                    lastFrame = Time.time;
-                }
-            }
+            desiredPos = new Vector3(startPosition.x += movementDistance, startPosition.y, startPosition.z); // move right
         }
+
+        //increment timer once per frame
+        currentLerpTime += Time.deltaTime;
+        if (currentLerpTime > lerpTime)
+        {
+            currentLerpTime = lerpTime;
+        }
+
+        float perc = currentLerpTime / lerpTime;
+        transform.position = Vector3.Lerp(startPosition, desiredPos, perc);
     }
+
 
     void placeBombs()
     {
@@ -168,7 +70,7 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKeyDown("space"))
         {
-            Instantiate(bombPrefab, new Vector3(pos.x,pos.y,pos.z), Quaternion.identity);
+            Instantiate(bombPrefab, new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
         }
     }
 
