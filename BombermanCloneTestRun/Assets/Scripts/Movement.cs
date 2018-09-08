@@ -26,6 +26,7 @@ public class Movement : MonoBehaviour
     void Update()
     {
         placeBombs();
+
     }
 
     // Used for all physics based interactions
@@ -62,7 +63,7 @@ public class Movement : MonoBehaviour
             moving = true;
         }
 
-        if (moving == true && (!Input.GetKey("w") && !Input.GetKey("a") && !Input.GetKey("s") && !Input.GetKey("d")))
+        if (moving == true && (Input.GetKeyUp("w") || Input.GetKeyUp("a") || Input.GetKeyUp("s") || Input.GetKeyUp("d") || Input.GetKeyUp("space")))
         {
             characterRigidbody.velocity = Vector2.zero;
             moving = false;
@@ -75,7 +76,7 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKeyDown("space"))
         {
-            Instantiate(bombPrefab, new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
+            Instantiate(bombPrefab, new Vector3(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.y), pos.z), Quaternion.identity);
         }
     }
 
