@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114580729576639824}
   - component: {fileID: 50622575201801678}
   - component: {fileID: 61927124680791018}
+  - component: {fileID: 58308633997913706}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -63,6 +64,21 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!58 &58308633997913706
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1056620759114620}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.45
 --- !u!61 &61927124680791018
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -100,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bombPrefab: {fileID: 1222088953339274, guid: 14772d624cc17b949be8cc0f47b5fca2, type: 2}
-  speed: 1
+  speed: 10
 --- !u!212 &212522034318127094
 SpriteRenderer:
   m_ObjectHideFlags: 1

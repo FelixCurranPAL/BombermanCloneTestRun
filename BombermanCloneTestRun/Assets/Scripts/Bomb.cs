@@ -7,14 +7,18 @@ public class Bomb : MonoBehaviour {
 
     void Start ()
     {
-        
+        Destroy(gameObject, bombtime);
     }
 
     // Update is called once per frame
     void Update ()
     {
-        Destroy(gameObject, bombtime);
+        
     }
+
+    //KICK POWERUP
+    // ON COLLISION ENTER, CHECK IF PLAYER HAS KICK POWERUP
+    // IF SO, ADD FORCE IN DIRECT OF COLLISION
 
     void OnTriggerExit2D ()
     {

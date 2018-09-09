@@ -26,44 +26,50 @@ public class Movement : MonoBehaviour
     void Update()
     {
         placeBombs();
-
+        Debug.Log(characterRigidbody.velocity);
+        //Debug.Log(GetComponent<Rigidbody2D>().velocity);
     }
 
     // Used for all physics based interactions
     void FixedUpdate()
     {
         movement();
+        
     }
 
     void movement()
     {
-        characterRigidbody = GetComponent<Rigidbody2D>();
+        characterRigidbody = gameObject.GetComponent<Rigidbody2D>();
 
         if (Input.GetKey("w"))
         {
-            characterRigidbody.AddForce(transform.up * speed);
+            //characterRigidbody.AddForce(transform.up * speed);
+            characterRigidbody.velocity = transform.up * speed;
             moving = true;
         }
 
         if (Input.GetKey("a"))
         {
-            characterRigidbody.AddForce(-transform.right * speed);
+            //characterRigidbody.AddForce(-transform.right * speed);
+            characterRigidbody.velocity = -transform.right * speed;
             moving = true;
         }
 
         if (Input.GetKey("s"))
         {
-            characterRigidbody.AddForce(-transform.up * speed);
+            //characterRigidbody.AddForce(-transform.up * speed);
+            characterRigidbody.velocity = -transform.up * speed;
             moving = true;
         }
 
         if (Input.GetKey("d"))
         {
-            characterRigidbody.AddForce(transform.right * speed);
+            //characterRigidbody.AddForce(transform.right * speed);
+            characterRigidbody.velocity = transform.right * speed;
             moving = true;
         }
 
-        if (moving == true && (Input.GetKeyUp("w") || Input.GetKeyUp("a") || Input.GetKeyUp("s") || Input.GetKeyUp("d") || Input.GetKeyUp("space")))
+        if (moving == true && (!Input.GetKey("w") && !Input.GetKey("a") && !Input.GetKey("s") && !Input.GetKey("d") && !Input.GetKey("space")))
         {
             characterRigidbody.velocity = Vector2.zero;
             moving = false;
