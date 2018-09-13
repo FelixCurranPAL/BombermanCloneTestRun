@@ -1,79 +1,154 @@
 ﻿
 using UnityEngine;
+using System.Collections.Generic;
 using System.Timers;
 using System;
-
-//using UnityEngine;
-//using System.Timers;
-//using System;
 
 public class Movement : MonoBehaviour
 {
     public GameObject bombPrefab;
     public float speed;
 
-    private bool moving;
     private Rigidbody2D characterRigidbody;
 
+    private List<KeyCode> keysPressed = new List<KeyCode>();
 
     // Use this for initialization
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         placeBombs();
-        Debug.Log(characterRigidbody.velocity);
-        //Debug.Log(GetComponent<Rigidbody2D>().velocity);
     }
 
     // Used for all physics based interactions
     void FixedUpdate()
     {
         movement();
-        
     }
 
     void movement()
     {
         characterRigidbody = gameObject.GetComponent<Rigidbody2D>();
 
-        if (Input.GetKey("w"))
+        // CHECK IF ANY OF THE CORE MOVEMENT BUTTONS ARE BEING PRESSED, IF THEY ARE THEN ADD THEM TO A LIST
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         {
-            //characterRigidbody.AddForce(transform.up * speed);
-            characterRigidbody.velocity = transform.up * speed;
-            moving = true;
+            if (Input.GetKey(KeyCode.W) && !keysPressed.Contains(KeyCode.W))
+            {
+                keysPressed.Add(KeyCode.W);
+            }
+
+            if (Input.GetKey(KeyCode.A) && !keysPressed.Contains(KeyCode.A))
+            {
+                keysPressed.Add(KeyCode.A);
+            }
+
+            if (Input.GetKey(KeyCode.S) && !keysPressed.Contains(KeyCode.S))
+            {
+                keysPressed.Add(KeyCode.S);
+            }
+
+            if (Input.GetKey(KeyCode.D) && !keysPressed.Contains(KeyCode.D))
+            {
+                keysPressed.Add(KeyCode.D);
+            }
         }
 
-        if (Input.GetKey("a"))
+        // IF ONE OF THE BUTTONS STOPS BEING PRESSED, REMOVE IT FROM THE LIST
+        if (!Input.GetKey(KeyCode.W) || !Input.GetKey(KeyCode.A) || !Input.GetKey(KeyCode.S) || !Input.GetKey(KeyCode.D))
         {
-            //characterRigidbody.AddForce(-transform.right * speed);
-            characterRigidbody.velocity = -transform.right * speed;
-            moving = true;
+            if (!Input.GetKey(KeyCode.W))
+            {
+                keysPressed.Remove(KeyCode.W);
+            }
+
+            if (!Input.GetKey(KeyCode.A))
+            {
+                keysPressed.Remove(KeyCode.A);
+            }
+
+            if (!Input.GetKey(KeyCode.S))
+            {
+                keysPressed.Remove(KeyCode.S);
+            }
+
+            if (!Input.GetKey(KeyCode.D))
+            {
+                keysPressed.Remove(KeyCode.D);
+            }
         }
 
-        if (Input.GetKey("s"))
+        // IF BUTTONS ARE BEING PRESSED, GRAB THE TOP BUTTON FROM THE LIST AND MOVE THE CHARACTER IN THAT DIRECTION. 
+        if (keysPressed.Count > 0)
         {
-            //characterRigidbody.AddForce(-transform.up * speed);
-            characterRigidbody.velocity = -transform.up * speed;
-            moving = true;
-        }
+            if (keysPressed[keysPressed.Count - 1] == KeyCode.W)
+            {
+                characterRigidbody.velocity = transform.up * speed;
+            }
 
-        if (Input.GetKey("d"))
-        {
-            //characterRigidbody.AddForce(transform.right * speed);
-            characterRigidbody.velocity = transform.right * speed;
-            moving = true;
-        }
+            if (keysPressed[keysPressed.Count - 1] == KeyCode.A)
+            {
+                characterRigidbody.velocity = -transform.right * speed;
+            }
 
-        if (moving == true && (!Input.GetKey("w") && !Input.GetKey("a") && !Input.GetKey("s") && !Input.GetKey("d") && !Input.GetKey("space")))
+            if (keysPressed[keysPressed.Count - 1] == KeyCode.S)
+            {
+                characterRigidbody.velocity = -transform.up * speed;
+            }
+
+            if (keysPressed[keysPressed.Count - 1] == KeyCode.D)
+            {
+                characterRigidbody.velocity = transform.right * speed;
+            }
+        }
+        // IF THE LIST IS EMPTY, STOP THE CHARACTER MOVING
+        else
         {
             characterRigidbody.velocity = Vector2.zero;
-            moving = false;
         }
+
+        // PRINT THE CONTENTS OF THE LIST FOR DEBUGGING
+        string listContents = "";
+
+        for (int i = 0; i < keysPressed.Count; i++)
+        {
+            listContents = listContents + keysPressed[i];
+        }
+
+        Debug.Log(listContents);
+
+
+
+        // OLD MOVEMENT IMPLEMENTATION
+        //if (Input.GetKey("w"))
+        //{
+        //    characterRigidbody.velocity = transform.up * speed;
+        //}
+
+        //if (Input.GetKey("a"))
+        //{
+        //    characterRigidbody.velocity = -transform.right * speed;
+        //}
+
+        //if (Input.GetKey("s"))
+        //{
+        //    characterRigidbody.velocity = -transform.up * speed;
+        //}
+
+        //if (Input.GetKey("d"))
+        //{
+        //    characterRigidbody.velocity = transform.right * speed;
+        //}
+
+        //if (!Input.GetKey("w") && !Input.GetKey("a") && !Input.GetKey("s") && !Input.GetKey("d") && !Input.GetKey("space"))
+        //{
+        //    characterRigidbody.velocity = Vector2.zero;
+        //}
     }
 
     void placeBombs()
