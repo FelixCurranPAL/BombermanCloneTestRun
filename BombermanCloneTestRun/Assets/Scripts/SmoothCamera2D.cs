@@ -13,6 +13,7 @@ public class SmoothCamera2D : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        target = GameObject.FindGameObjectsWithTag("Player")[0];
         targetPos = transform.position;
     }
 

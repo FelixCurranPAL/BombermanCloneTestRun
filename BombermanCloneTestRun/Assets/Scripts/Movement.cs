@@ -112,43 +112,15 @@ public class Movement : MonoBehaviour
             characterRigidbody.velocity = Vector2.zero;
         }
 
-        // PRINT THE CONTENTS OF THE LIST FOR DEBUGGING
-        string listContents = "";
+        //// PRINT THE CONTENTS OF THE LIST FOR DEBUGGING
+        //string listContents = "";
 
-        for (int i = 0; i < keysPressed.Count; i++)
-        {
-            listContents = listContents + keysPressed[i];
-        }
-
-        Debug.Log(listContents);
-
-
-
-        // OLD MOVEMENT IMPLEMENTATION
-        //if (Input.GetKey("w"))
+        //for (int i = 0; i < keysPressed.Count; i++)
         //{
-        //    characterRigidbody.velocity = transform.up * speed;
+        //    listContents = listContents + keysPressed[i];
         //}
 
-        //if (Input.GetKey("a"))
-        //{
-        //    characterRigidbody.velocity = -transform.right * speed;
-        //}
-
-        //if (Input.GetKey("s"))
-        //{
-        //    characterRigidbody.velocity = -transform.up * speed;
-        //}
-
-        //if (Input.GetKey("d"))
-        //{
-        //    characterRigidbody.velocity = transform.right * speed;
-        //}
-
-        //if (!Input.GetKey("w") && !Input.GetKey("a") && !Input.GetKey("s") && !Input.GetKey("d") && !Input.GetKey("space"))
-        //{
-        //    characterRigidbody.velocity = Vector2.zero;
-        //}
+        //Debug.Log(listContents);
     }
 
     void placeBombs()
