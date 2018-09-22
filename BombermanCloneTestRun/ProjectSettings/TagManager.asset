@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Destructible
+  - Indestructible
+  - Bomb
   layers:
   - Default
   - TransparentFX
@@ -49,4 +52,7 @@ TagManager:
     locked: 0
   - name: Objects
     uniqueID: 696756495
+    locked: 0
+  - name: Characters
+    uniqueID: 2680885951
     locked: 0

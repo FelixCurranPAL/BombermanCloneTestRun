@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Timers;
 using System;
 
-public class Movement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public GameObject bombPrefab;
     public float speed;
+    public static int bombStrength = 2;
 
     private Rigidbody2D characterRigidbody;
 
